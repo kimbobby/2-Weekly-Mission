@@ -52,10 +52,12 @@ function App() {
   return (
     <>
       <Header isLogin={isLogin} selectedFolder={selectedFolder} loginInfo={loginInfo} />
-      <article>
-        <SearchBar />
-        <CardList handleCardClick={handleCardClick} items={items} />
-      </article>
+      <main>
+        <div className="wrapper">
+          <SearchBar />
+          <CardList handleCardClick={handleCardClick} items={items} />
+        </div>
+      </main>
       <Footer />
       {loadingError?.message && <span>{loadingError.message}</span>}
     </>

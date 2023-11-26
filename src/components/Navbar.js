@@ -9,7 +9,7 @@ const Navbar = ({ loginClick, isLogin, loginInfo }) => {
         {isLogin ? (
           <div className="user-info">
             <img className="profile" src={profileImageSource} alt="user profile" />
-            <p>{email}</p>
+            <p className="email">{email}</p>
           </div>
         ) : (
           <button className="cta cta-short" onClick={loginClick}>
