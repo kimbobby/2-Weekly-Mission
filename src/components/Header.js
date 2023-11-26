@@ -2,14 +2,16 @@ import Navbar from "./Navbar";
 const Header = ({ isLogin, selectedFolder, loginInfo }) => {
   const { name, owner } = selectedFolder;
   return (
-    <>
+    <header>
       <Navbar isLogin={isLogin} loginInfo={loginInfo} />
-      <div>
-        <img src={owner?.profileImageSource} alt="owner profile" />
-        <span>{owner?.name}</span>
-        <span>{name}</span>
-      </div>
-    </>
+      <section>
+        <div className="folder-info">
+          <img className="folder-profile" src={owner?.profileImageSource} alt="owner profile" />
+          <span id="folder-owner-name">@{owner?.name}</span>
+          <span id="folder-name">{name}</span>
+        </div>
+      </section>
+    </header>
   );
 };
 

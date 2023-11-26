@@ -1,6 +1,3 @@
-import kebab from "../assets/kebab.svg";
-import selectedMark from "../assets/state=Selected.svg";
-import defaultMark from "../assets/state=Default.svg";
 import noImage from "../assets/no-img-logo.svg";
 
 const generateCreatedDate = (createAt) => {
@@ -17,7 +14,7 @@ const generateCreatedDate = (createAt) => {
     }
   };
   const generateCreatedDay = () => {
-    if (date[2].indexOf("0") === -1) {
+    if (date[2][0] !== 0) {
       return date[2];
     } else {
       const singleDigitDay = date[2].split("");
@@ -93,33 +90,33 @@ const createTimePassedMessage = (date) => {
   }
 };
 
-const Card = ({ item, isSelect, isStatic, onClick }) => {
+const Card = ({ item, handleCardClick }) => {
   const { createdAt, description, imageSource, url } = item;
   const createdDate = generateCreatedDate(createdAt).slice(0, 3).join(".");
   const timePassedMsg = createTimePassedMessage(createdAt);
-  const handleCardClick = () => onClick(url);
+  const onClick = () => handleCardClick(url);
   return (
-    <div onClick={handleCardClick}>
-      <div>
+    <div className="card" onClick={onClick}>
+      <div className="card-image-box">
         {imageSource ? (
-          <img src={imageSource} alt="about link" />
+          <img className="card-image" src={imageSource} alt="about link" />
         ) : (
-          <img src={noImage} alt="Link without imageSource" />
+          <img className="no-card-image" src={noImage} alt="Link without imageSource" />
         )}
       </div>
-      {isSelect ? <img src={selectedMark} alt="selected mark" /> : <img src={defaultMark} alt="unselected mark" />}
-      <p>{timePassedMsg}</p>
-      {!isStatic && <img src={kebab} alt="kebab" />}
-      <p>{description}</p>
-      <p>{createdDate}</p>
+      <div className="card-caption">
+        <span className="time-msg">{timePassedMsg}</span>
+        <p className="description">{description}</p>
+        <p className="date-msg">{createdDate}</p>
+      </div>
     </div>
   );
 };
-const CardList = ({ isSelect, isStatic, items, onClick }) => {
+const CardList = ({ items, handleCardClick }) => {
   return (
-    <div>
+    <div className="card-layout">
       {items?.map((item) => {
-        return <Card key={item.id} item={item} isSelect={isSelect} isStatic={isStatic} onClick={onClick} />;
+        return <Card key={item.id} item={item} handleCardClick={handleCardClick} />;
       })}
     </div>
   );

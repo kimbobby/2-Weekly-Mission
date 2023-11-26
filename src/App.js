@@ -4,14 +4,14 @@ import Footer from "./components/Footer";
 import CardList from "./components/CardList";
 import SearchBar from "./components/SearchBar";
 import { getApiItems } from "./services/api";
-import { setSelectionRange } from "@testing-library/user-event/dist/utils";
+import "./styles/index.css";
 function App() {
   const [loadingError, setLoadingError] = useState(null);
   const [isLogin, setIsLogin] = useState(false);
-  const [isSelect, setIsSelect] = useState(false);
   const [items, setItems] = useState([]);
   const [selectedFolder, setSelectedFolder] = useState([]);
   const [loginInfo, setLoginInfo] = useState([]);
+
   const handleCardClick = (url) => {
     window.open(url, "_blank", "noopener, noreferrer");
   };
@@ -52,8 +52,10 @@ function App() {
   return (
     <>
       <Header isLogin={isLogin} selectedFolder={selectedFolder} loginInfo={loginInfo} />
-      <SearchBar />
-      <CardList onClick={handleCardClick} items={items} isSelect={isSelect} />
+      <article>
+        <SearchBar />
+        <CardList handleCardClick={handleCardClick} items={items} />
+      </article>
       <Footer />
       {loadingError?.message && <span>{loadingError.message}</span>}
     </>

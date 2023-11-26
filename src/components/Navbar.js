@@ -7,8 +7,8 @@ const Navbar = ({ loginClick, isLogin, loginInfo }) => {
       <nav>
         <img className="logo-mobile" src={logo} alt="홈으로 연결된 Linkbrary 로고" />
         {isLogin ? (
-          <div>
-            <img src={profileImageSource} alt="user profile" />
+          <div className="user-info">
+            <img className="profile" src={profileImageSource} alt="user profile" />
             <p>{email}</p>
           </div>
         ) : (
