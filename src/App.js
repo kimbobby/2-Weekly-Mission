@@ -12,7 +12,10 @@ function App() {
   const [items, setItems] = useState([]);
   const [selectedFolder, setSelectedFolder] = useState([]);
   const [loginInfo, setLoginInfo] = useState([]);
-  const handleCardClick = () => {};
+  const handleCardClick = (url) => {
+    window.open(url, "_blank", "noopener, noreferrer");
+  };
+
   const handleLoginStatusInfo = async () => {
     let result;
     try {

@@ -28,11 +28,12 @@ const generateCreatedDate = (createAt) => {
   return `${createdYear}. ${createdMonth}. ${createdDay}`;
 };
 
-const Card = ({ item, isSelect, isStatic }) => {
-  const { createdAt, description, imageSource } = item;
+const Card = ({ item, isSelect, isStatic, onClick }) => {
+  const { createdAt, description, imageSource, url } = item;
   const createdDate = generateCreatedDate(createdAt);
+  const handleCardClick = () => onClick(url);
   return (
-    <div>
+    <div onClick={handleCardClick}>
       <div>
         {imageSource ? (
           <img src={imageSource} alt="about link" />
@@ -52,7 +53,7 @@ const CardList = ({ isSelect, isStatic, items, onClick }) => {
   return (
     <div>
       {items?.map((item) => {
-        return <Card key={item.id} item={item} isSelect={isSelect} isStatic={isStatic} />;
+        return <Card key={item.id} item={item} isSelect={isSelect} isStatic={isStatic} onClick={onClick} />;
       })}
     </div>
   );
