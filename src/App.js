@@ -10,17 +10,28 @@ function App() {
   const [isSelect, setIsSelect] = useState(false);
   const [items, setItems] = useState([]);
   const [selectedFolder, setSelectedFolder] = useState([]);
+  const [loginInfo, setLoginInfo] = useState([]);
   const handleCardClick = () => {};
+  const handleLoginStatusInfo = async () => {
+    const userLoginInfo = await getApiItems("sample/user");
+    if (userLoginInfo) {
+      setIsLogin(true);
+      setLoginInfo(userLoginInfo);
+    }
+  };
   const handleLoad = async () => {
     const { folder } = await getApiItems("sample/folder");
     setItems(folder.links);
     setSelectedFolder(folder);
   };
-  useEffect(() => handleLoad(), []);
+  useEffect(() => {
+    handleLoad();
+    handleLoginStatusInfo();
+  }, []);
 
   return (
     <>
-      <Header isLogin={isLogin} selectedFolder={selectedFolder} />
+      <Header isLogin={isLogin} selectedFolder={selectedFolder} loginInfo={loginInfo} />
       <SearchBar />
       <CardList onClick={handleCardClick} items={items} isSelect={isSelect} />
       <Footer />

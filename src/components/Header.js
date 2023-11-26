@@ -1,9 +1,9 @@
 import Navbar from "./Navbar";
-const Header = ({ isLogin, selectedFolder }) => {
+const Header = ({ isLogin, selectedFolder, loginInfo }) => {
   const { name, owner } = selectedFolder;
   return (
     <>
-      <Navbar isLogin={isLogin} />
+      <Navbar isLogin={isLogin} loginInfo={loginInfo} />
       <div>
         <img src={owner?.profileImageSource} alt="owner profile" />
         <span>{owner?.name}</span>
