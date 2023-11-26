@@ -6,6 +6,7 @@ import SearchBar from "./components/SearchBar";
 import { getApiItems } from "./services/api";
 import { setSelectionRange } from "@testing-library/user-event/dist/utils";
 function App() {
+  const [loadingError, setLoadingError] = useState(null);
   const [isLogin, setIsLogin] = useState(false);
   const [isSelect, setIsSelect] = useState(false);
   const [items, setItems] = useState([]);
@@ -13,14 +14,30 @@ function App() {
   const [loginInfo, setLoginInfo] = useState([]);
   const handleCardClick = () => {};
   const handleLoginStatusInfo = async () => {
-    const userLoginInfo = await getApiItems("sample/user");
+    let result;
+    try {
+      setLoadingError(null);
+      result = await getApiItems("sample/user");
+    } catch (error) {
+      setLoadingError(error);
+      return;
+    }
+    const userLoginInfo = result;
     if (userLoginInfo) {
       setIsLogin(true);
       setLoginInfo(userLoginInfo);
     }
   };
   const handleLoad = async () => {
-    const { folder } = await getApiItems("sample/folder");
+    let result;
+    try {
+      setLoadingError(null);
+      result = await getApiItems("sample/folder");
+    } catch (error) {
+      setLoadingError(error);
+      return;
+    }
+    const { folder } = result;
     setItems(folder.links);
     setSelectedFolder(folder);
   };
@@ -35,6 +52,7 @@ function App() {
       <SearchBar />
       <CardList onClick={handleCardClick} items={items} isSelect={isSelect} />
       <Footer />
+      {loadingError?.message && <span>{loadingError.message}</span>}
     </>
   );
 }
