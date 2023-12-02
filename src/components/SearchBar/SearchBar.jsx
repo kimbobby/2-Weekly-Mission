@@ -1,4 +1,5 @@
 import search from "../../assets/search.svg";
+import "./SearchBar.css";
 const SearchBar = () => {
   return (
     <form className="input-wrapper">

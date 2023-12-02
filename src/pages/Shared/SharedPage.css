@@ -1,0 +1,22 @@
+.wrapper {
+  margin: 4rem auto 10rem;
+  max-width: 106rem;
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
+}
+@media (max-width: 1124px) {
+  section {
+    padding: 0 3.2rem;
+  }
+  .wrapper {
+    max-width: 70.4rem;
+  }
+}
+@media (max-width: 767px) {
+  .wrapper {
+    margin: 2rem auto 6rem;
+    max-width: 32.5rem;
+    gap: 3.2rem;
+  }
+}

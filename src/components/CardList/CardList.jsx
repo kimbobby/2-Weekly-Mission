@@ -1,5 +1,6 @@
 import noImage from "../../assets/no-img-logo.svg";
 import { generateCreatedDate, createTimePassedMessage } from "../../utils/date";
+import "./CardList.css";
 const Card = ({ item, handleCardClick }) => {
   const { createdAt, description, imageSource, url } = item;
   const createdDate = generateCreatedDate(createdAt);

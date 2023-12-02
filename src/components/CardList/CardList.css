@@ -1,0 +1,87 @@
+.card-layout {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-auto-rows: 33.4rem;
+  row-gap: 2.5rem;
+  column-gap: 2rem;
+  width: 100%;
+}
+
+.card {
+  width: 34rem;
+  height: 33.4rem;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0px 5px 25px 0px rgba(0, 0, 0, 0.08);
+}
+.card-image-box {
+  width: 100%;
+  height: 20rem;
+  overflow: hidden;
+  background-color: #dddfff;
+  position: relative;
+}
+
+.card-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scale(1);
+  transition: transform 0.5s;
+}
+
+.card-image:hover {
+  transform: scale(1.3);
+  transition: transform 0.5s;
+}
+.no-card-image {
+  width: 133px;
+  position: absolute;
+  transform: translate(50%, -50%);
+  top: 50%;
+  right: 50%;
+}
+
+.card-caption {
+  padding: 1.5rem 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.card-caption .time-msg {
+  font-size: 1.3rem;
+  color: #666;
+}
+.card-caption .description {
+  font-size: 1.6rem;
+  line-height: 150%;
+  height: 4.9rem;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+.card-caption .date-msg {
+  font-size: 1.4rem;
+  color: #333;
+  height: 1.9rem;
+}
+
+@media (max-width: 1124px) {
+  .card-layout {
+    grid-template-columns: repeat(2, 1fr);
+    grid-auto-rows: 33.4rem;
+    column-gap: 2.4rem;
+  }
+}
+
+@media (max-width: 767px) {
+  .card-layout {
+    grid-template-columns: repeat(1, 1fr);
+    grid-auto-rows: 32.7rem;
+    row-gap: 2rem;
+  }
+  .card {
+    width: 100%;
+    height: 32.7rem;
+  }
+}

@@ -1,4 +1,5 @@
 import SNS from "../../data/SNS";
+import "./Footer.css";
 const Footer = () => {
   return (
     <footer>
