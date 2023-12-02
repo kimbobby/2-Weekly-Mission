@@ -1,4 +1,4 @@
-import logo from "../assets/logo.svg";
+import logo from "../../assets/logo.svg";
 
 const Navbar = ({ loginClick, isLogin, loginInfo }) => {
   const { email, profileImageSource } = loginInfo;
@@ -13,7 +13,7 @@ const Navbar = ({ loginClick, isLogin, loginInfo }) => {
           </div>
         ) : (
           <button className="cta cta-short" onClick={loginClick}>
-            <span>로그인</span>
+            로그인
           </button>
         )}
       </nav>

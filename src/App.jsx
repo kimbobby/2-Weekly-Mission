@@ -1,12 +1,13 @@
-import { useState, useEffect } from "react";
-import Header from "./components/Header";
-import Footer from "./components/Footer";
-import CardList from "./components/CardList";
-import SearchBar from "./components/SearchBar";
+import { useState, useEffect, useCallback } from "react";
+import Header from "./components/Header/Header";
+import Footer from "./components/Footer/Footer";
+import CardList from "./components/CardList/CardList";
+import SearchBar from "./components/SearchBar/SearchBar";
 import { getApiItems } from "./services/api";
 import "./styles/index.css";
+import useAsync from "./hooks/useAsync";
 function App() {
-  const [loadingError, setLoadingError] = useState(null);
+  const [isLoading, loadingError, getApiItemsAsync] = useAsync(getApiItems);
   const [isLogin, setIsLogin] = useState(false);
   const [items, setItems] = useState([]);
   const [selectedFolder, setSelectedFolder] = useState([]);
@@ -16,38 +17,29 @@ function App() {
     window.open(url, "_blank", "noopener, noreferrer");
   };
 
-  const handleLoginStatusInfo = async () => {
-    let result;
-    try {
-      setLoadingError(null);
-      result = await getApiItems("sample/user");
-    } catch (error) {
-      setLoadingError(error);
-      return;
-    }
+  const handleLoginStatusInfo = useCallback(async () => {
+    let result = await getApiItemsAsync("sample/user");
+    if (!result) return;
+
     const userLoginInfo = result;
     if (userLoginInfo) {
       setIsLogin(true);
       setLoginInfo(userLoginInfo);
     }
-  };
-  const handleLoad = async () => {
-    let result;
-    try {
-      setLoadingError(null);
-      result = await getApiItems("sample/folder");
-    } catch (error) {
-      setLoadingError(error);
-      return;
-    }
+  }, [getApiItemsAsync]);
+  const handleLoad = useCallback(async () => {
+    let result = await getApiItemsAsync("sample/folder");
+    if (!result) return;
+
     const { folder } = result;
     setItems(folder.links);
     setSelectedFolder(folder);
-  };
+  }, [getApiItemsAsync]);
+
   useEffect(() => {
     handleLoad();
     handleLoginStatusInfo();
-  }, []);
+  }, [handleLoad, handleLoginStatusInfo]);
 
   return (
     <>

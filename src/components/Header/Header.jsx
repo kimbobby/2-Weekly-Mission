@@ -1,4 +1,4 @@
-import Navbar from "./Navbar";
+import Navbar from "../Navbar/Navbar";
 const Header = ({ isLogin, selectedFolder, loginInfo }) => {
   const { name, owner } = selectedFolder;
   return (
