@@ -16,7 +16,9 @@ const LinkSection = styled.div`
 const LinkContainer = styled.div`
   max-width: 80rem;
   margin: 0 auto;
-
+  @media (max-width: 1124px) {
+    max-width: 70.4rem;
+  }
   @media (max-width: 767px) {
     max-width: 32.5rem;
   }

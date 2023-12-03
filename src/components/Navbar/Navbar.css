@@ -44,16 +44,17 @@ nav .profile {
     margin: 0 3.2rem;
     max-width: 70.4rem;
   }
-  nav .logo-mobile {
-    width: 88.67px;
-    height: 16px;
-  }
 }
 
 @media (max-width: 767px) {
   nav {
     height: 6.3rem;
     max-width: 32.5rem;
+  }
+
+  nav .logo-mobile {
+    width: 88.67px;
+    height: 16px;
   }
   .user-info .email {
     display: none;
