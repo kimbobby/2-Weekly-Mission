@@ -4,6 +4,12 @@ import addIcon from "../../assets/add.svg";
 const TagButtonWrapper = styled.div`
   display: flex;
   gap: 0.8rem;
+  width: 100%;
+
+  @media (max-width: 767px) {
+    flex-wrap: wrap;
+    row-gap: 1.2rem;
+  }
 `;
 
 const TagButton = styled.button`
@@ -11,10 +17,19 @@ const TagButton = styled.button`
   border: 1px solid var(--primary-color);
   border-radius: 5px;
 
+  &:hover {
+    background-color: var(--gray-10-color);
+  }
+
   &:active,
   &:visited {
     color: white;
     background-color: var(--primary-color);
+  }
+
+  @media (max-width: 767px) {
+    padding: 0.6rem 1rem;
+    font-size: 1.4rem;
   }
 `;
 
@@ -28,8 +43,13 @@ const AddButton = styled.button`
   font-weight: 500;
   display: flex;
   align-items: center;
+  flex-shrink: 0;
   & ${Icon} {
     margin-left: 4px;
+  }
+
+  @media (max-width: 767px) {
+    display: none;
   }
 `;
 const ButtonContainer = styled.div`
@@ -37,6 +57,9 @@ const ButtonContainer = styled.div`
   justify-content: space-between;
   align-items: center;
   margin-top: 1.6rem;
+  @media (max-width: 767px) {
+    margin-top: 1.2rem;
+  }
 `;
 
 const FolderButton = ({ folders, handleFolderClick, handleAllFoldersClick }) => {
@@ -57,9 +80,9 @@ const FolderButton = ({ folders, handleFolderClick, handleAllFoldersClick }) => 
           );
         })}
       </TagButtonWrapper>
-      <AddButton>
+      <AddButton type="button">
         폴더추가
-        <Icon src={addIcon} alt="" />
+        <Icon src={addIcon} alt="add Folder Icon" />
       </AddButton>
     </ButtonContainer>
   );

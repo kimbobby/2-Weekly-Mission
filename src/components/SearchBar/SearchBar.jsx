@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import search from "../../assets/search.svg";
 
-const SearchBarWrapper = styled.div`
+const SearchBarForm = styled.form`
   position: relative;
   width: 100%;
 `;
@@ -18,25 +18,34 @@ const SearchInput = styled.input`
     color: #666;
     line-height: 150%;
   }
+  @media (max-width: 767px) {
+    height: 4.3rem;
+    left: 1rem;
+
+    &::placeholder {
+      font-size: 1.4rem;
+      line-height: normal;
+    }
+  }
 `;
 
 const SearchIcon = styled.img`
+  width: 1.6rem;
+  height: 1.6rem;
   position: absolute;
   transform: translateY(-50%);
   top: 50%;
   left: 1.6rem;
-  width: 1.6rem;
-  height: 1.6rem;
 `;
 
 const SearchBar = () => {
   return (
-    <SearchBarWrapper>
+    <SearchBarForm>
       <SearchInput className type="text" name="search" placeholder="링크를 검색해 보세요." />
       <button type="submit">
         <SearchIcon id="search-icon" src={search} alt="돋보기 아이콘" />
       </button>
-    </SearchBarWrapper>
+    </SearchBarForm>
   );
 };
 

@@ -7,19 +7,20 @@ import AddLink from "../../components/AddLink/AddLink";
 import "./FolderPage.css";
 import FolderButton from "../../components/FolderButton/FolderButton";
 import FolderToolbar from "../../components/FolderToobar/FolderToobar";
-
+import NoLinksMsg from "../../components/ErrorMsg/NoLinksMsg";
+import AddFolderFab from "../../components/Fab/Fab";
 const FolderPage = () => {
   const INIT_FOLDER = {
     folderId: "",
     folderName: "전체",
   };
-
   const [items, setItems] = useState([]);
-  const [isLoading, loadingError, getLinksAsync] = useAsync(getLinks);
+  const [isLoading, isError, getLinksAsync] = useAsync(getLinks);
+  const [userId, setUserId] = useState("1");
   const [folders, setFolders] = useState([]);
   const [folderId, setFolderId] = useState(INIT_FOLDER.folderId);
-  const [userId, setUserId] = useState("1");
   const [folderName, setFolderName] = useState(INIT_FOLDER.folderName);
+  const [isSelected, setIsSelected] = useState(false);
 
   const handleLinkLoad = useCallback(
     async (folderId) => {
@@ -50,21 +51,33 @@ const FolderPage = () => {
   useEffect(() => {
     handleLinkLoad(folderId);
     handleFolderLoad(userId);
-  }, [handleLinkLoad, handleFolderLoad, userId, folderId]);
+  }, [handleLinkLoad, handleFolderLoad, userId, folderId, folderName]);
 
   return (
     <>
       <AddLink />
       <div class="wrapper">
         <SearchBar />
-        <FolderButton
-          folders={folders}
-          handleFolderClick={handleFolderClick}
-          handleAllFoldersClick={handleAllFoldersClick}
-        />
-        <FolderToolbar folderName={folderName} />
-        <CardList items={items} />
+        {items ? (
+          <>
+            <FolderButton
+              folders={folders}
+              handleFolderClick={handleFolderClick}
+              handleAllFoldersClick={handleAllFoldersClick}
+            />
+            <FolderToolbar folderName={folderName} initFolderName={INIT_FOLDER.folderName} />
+            <CardList
+              items={items}
+              isSelected={isSelected}
+              folderName={folderName}
+              initFolderName={INIT_FOLDER.folderName}
+            />
+          </>
+        ) : (
+          <NoLinksMsg />
+        )}
       </div>
+      <AddFolderFab />
     </>
   );
 };

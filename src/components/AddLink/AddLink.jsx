@@ -1,19 +1,31 @@
 import linkIcon from "../../assets/link.svg";
 import styled from "styled-components";
 import Input from "../SearchBar/SearchBar.jsx";
-const InputWrapper = styled.div`
-  position: relative;
-  width: 80rem;
+const LinkSection = styled.div`
+  background-color: #edf7ff;
+  width: 100%;
+  padding-top: 6rem;
+  padding-bottom: 9rem;
+  padding-left: 3.2rem;
+  padding-right: 3.2rem;
+  @media (max-width: 767px) {
+    padding-top: 2.4rem;
+    padding-bottom: 4rem;
+  }
 `;
 const LinkContainer = styled.div`
-  width: 100%;
-  background-color: #edf7ff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 6rem 32rem;
+  max-width: 80rem;
+  margin: 0 auto;
+
+  @media (max-width: 767px) {
+    max-width: 32.5rem;
+  }
 `;
 
+const InputWrapper = styled.div`
+  position: relative;
+  width: 100%;
+`;
 const LinkInput = styled.input`
   width: 100%;
   height: 6.9rem;
@@ -28,6 +40,14 @@ const LinkInput = styled.input`
     font-weight: 400;
     font-size: 1.6rem;
   }
+  @media (max-width: 767px) {
+    height: 5.3rem;
+    padding: 0.8rem 1rem 0.8rem 3.4rem;
+    &::placeholder {
+      line-height: normal;
+      font-size: 1.4rem;
+    }
+  }
 `;
 const LinkIcon = styled.img`
   width: 2rem;
@@ -36,6 +56,11 @@ const LinkIcon = styled.img`
   transform: translateY(-50%);
   top: 50%;
   left: 2rem;
+  @media (max-width: 767px) {
+    width: 1.6rem;
+    height: 1.6rem;
+    left: 1rem;
+  }
 `;
 const LinkButton = styled.button`
   display: flex;
@@ -51,19 +76,25 @@ const LinkButton = styled.button`
   transform: translateY(-50%);
   top: 50%;
   right: 2rem;
+
+  @media (max-width: 767px) {
+    right: 1rem;
+  }
 `;
 
 const AddLink = () => {
   return (
-    <LinkContainer>
-      <form>
-        <InputWrapper>
-          <LinkInput placeholder="링크를 추가해보세요" />
-          <LinkButton type="submit">추가하기</LinkButton>
-          <LinkIcon src={linkIcon} alt="link icon" />
-        </InputWrapper>
-      </form>
-    </LinkContainer>
+    <LinkSection>
+      <LinkContainer>
+        <form>
+          <InputWrapper>
+            <LinkInput placeholder="링크를 추가해보세요" />
+            <LinkButton type="submit">추가하기</LinkButton>
+            <LinkIcon src={linkIcon} alt="link icon" />
+          </InputWrapper>
+        </form>
+      </LinkContainer>
+    </LinkSection>
   );
 };
 
