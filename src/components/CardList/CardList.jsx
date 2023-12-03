@@ -2,15 +2,17 @@ import noImage from "../../assets/no-img-logo.svg";
 import { generateCreatedDate, createTimePassedMessage } from "../../utils/date";
 import "./CardList.css";
 const Card = ({ item, handleCardClick }) => {
-  const { createdAt, description, imageSource, url } = item;
-  const createdDate = generateCreatedDate(createdAt);
-  const timePassedMsg = createTimePassedMessage(createdAt);
-  const onClick = () => handleCardClick(url);
+  const { createdAt, description, imageSource, url, created_at, image_source } = item;
+  const createAtData = createdAt ? createdAt : created_at;
+  const linkImage = imageSource ? imageSource : image_source;
+  const createdDate = generateCreatedDate(createAtData);
+  const timePassedMsg = createTimePassedMessage(createAtData);
+  const onClick = () => (handleCardClick ? handleCardClick(url) : null);
   return (
     <div className="card" onClick={onClick}>
       <div className="card-image-box">
-        {imageSource ? (
-          <img className="card-image" src={imageSource} alt="about link" />
+        {linkImage ? (
+          <img className="card-image" src={linkImage} alt="about link" />
         ) : (
           <img className="no-card-image" src={noImage} alt="Link without imageSource" />
         )}

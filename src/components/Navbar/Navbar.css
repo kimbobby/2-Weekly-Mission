@@ -8,16 +8,6 @@ nav {
   padding: 0 20rem;
 }
 
-.nav-background {
-  position: fixed;
-  top: 0;
-  background-color: #edf7ff;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 2;
-}
 .user-info {
   display: flex;
   flex-direction: row;

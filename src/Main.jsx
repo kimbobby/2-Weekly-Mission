@@ -7,7 +7,7 @@ function Main() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<App />}>
-          <Route index element={<Navigate replace to="/shared" />} />
+          <Route index element={<Navigate replace to="/folder" />} />
           <Route path="shared" element={<SharedPage />} />
           <Route path="folder" element={<FolderPage />} />
         </Route>
